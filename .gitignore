@@ -1,0 +1,27 @@
+﻿# Build / IDE
+target/
+build/
+.gradle/
+.idea/
+*.iml
+.dart_tool/
+.flutter-plugins-dependencies
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+key.properties
+*.pem
+*.p12
+**/google-services.json
+**/local.properties
+# Spring Boot config holds a DB password -> commit application.properties.example instead
+backend/src/main/resources/application.properties
+
+# misc
+nul
+.claude/
+__pycache__/

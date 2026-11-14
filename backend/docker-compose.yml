@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: contacts-db
+    environment:
+      POSTGRES_DB: contactsdb
+      POSTGRES_USER: contacts
+      POSTGRES_PASSWORD: contacts
+    ports:
+      - "5432:5432"
+    volumes:
+      - contacts-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U contacts -d contactsdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    container_name: contacts-api
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/contactsdb
+      SPRING_DATASOURCE_USERNAME: contacts
+      SPRING_DATASOURCE_PASSWORD: contacts
+    ports:
+      - "8080:8080"
+
+volumes:
+  contacts-pgdata:

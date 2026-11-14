@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Material3 theme that includes a top app bar (ActionBar) for titles. -->
+    <style name="Theme.ContactsCrud" parent="Theme.Material3.DayNight" />
+</resources>
